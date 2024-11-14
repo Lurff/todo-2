@@ -9,10 +9,15 @@ export const Provider = ({ children }) => {
 	});
 
 	useEffect(() => {
-		const Todos = value.todos;
-		console.log(Todos);
-		localStorage.setItem("todos", JSON.stringify(Todos));
-	}, [value.todos]);
+		if (value.todos.length) {
+			localStorage.setItem("todos", JSON.stringify(value.todos));
+		}
+	}, [value]);
+
+	useEffect(() => {
+		const SavedTodos = JSON.parse(localStorage.getItem("todos"));
+		setValue((v) => ({ ...v, todos: SavedTodos }));
+	}, []);
 
 	return (
 		<Context.Provider value={{ value, setValue }}>{children}</Context.Provider>

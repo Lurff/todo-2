@@ -11,6 +11,7 @@ const Navbar = () => {
 			text: "",
 			todos: [...v.todos, { text: v.text, isDone: false }],
 		}));
+		// localStorage.setItem("todos", JSON.stringify(value.todos));
 	};
 
 	const HandleWrite = (e) => {
