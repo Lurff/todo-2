@@ -12,7 +12,7 @@ createRoot(document.getElementById("root")).render(
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				xmlnsXlink="http://www.w3.org/1999/xlink"
-				className="absolute w-full h-full inset-0 -z-10"
+				className="absolute w-full min-h-screen inset-0 -z-10"
 			>
 				<filter id="n" x="0" y="0">
 					<feTurbulence

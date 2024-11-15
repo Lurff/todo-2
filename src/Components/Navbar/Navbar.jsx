@@ -5,16 +5,16 @@ import Context from "../../App/context";
 const Navbar = () => {
 	const { value, setValue } = useContext(Context);
 
-	const HandleSubmit = () => {
+	const handleSubmit = () => {
+		if (!value.text.trim()) return;
 		setValue((v) => ({
 			...v,
 			text: "",
 			todos: [...v.todos, { text: v.text, isDone: false }],
 		}));
-		// localStorage.setItem("todos", JSON.stringify(value.todos));
 	};
 
-	const HandleWrite = (e) => {
+	const handleWrite = (e) => {
 		setValue((v) => ({ ...v, text: e.target.value }));
 	};
 
@@ -25,14 +25,14 @@ const Navbar = () => {
 					<input
 						value={value.text}
 						placeholder="Todo"
-						onChange={HandleWrite}
-						onKeyUp={(e) => e.key === "Enter" && HandleSubmit()}
+						onChange={handleWrite}
+						onKeyUp={(e) => e.key === "Enter" && handleSubmit()}
 						type="text"
 						className="w-full bg-transparent outline-none text-white"
 					/>
 					<button
-						onClick={HandleSubmit}
-						disabled={!value.text.length > 0}
+						onClick={handleSubmit}
+						disabled={!value.text.trim()} // Boşluklar için kontrol
 						className="px-3 py-1.5 text-lg text-white bg-violet-800/50 hover:bg-violet-900 transition-all rounded-lg disabled:text-white/25 disabled:bg-violet-800/25"
 					>
 						<BiPlus size={25} />
